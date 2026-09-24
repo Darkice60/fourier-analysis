@@ -34,6 +34,27 @@ def find_high(xi_min, xi_max):
             peaks.append((xi, f_hat, magnitude))
     return peaks
 
+def refine_peaks(peaks):
+    refined = []
+    for i in range(len(peaks)):
+        xi, _, mag = peaks[i]
+        step = 0.01 
+        while step > 1e-10:  
+            mag_before = abs(fourier_transform(func, (xi-step), t, n))
+            mag_after = abs(fourier_transform(func, (xi+step), t, n))
+
+            if mag_before > mag:
+                xi -= step
+                mag = mag_before
+            elif mag_after > mag:
+                xi += step
+                mag = mag_after
+            else:
+                step /= 10
+        f_hat = fourier_transform(func, xi, t, n)
+        refined.append((xi, f_hat, abs(f_hat)))
+    return refined
+             
 
 choice = 2
 dest = False
@@ -53,5 +74,8 @@ while not dest:
         xi_min = float(input("what is the lowest frequency you would like to search for?\n"))
         xi_max = float(input("what is the highest frequency you would like to search for?\n"))
         peaks = find_high(xi_min, xi_max)
-
+        refined = refine_peaks(peaks)
+        for i in range(len(refined)):
+            xi, f_hat, mag = refined[i]
+            print(f"{xi}, {f_hat}, {mag}")
     dest = bool(input("End?\n"))
