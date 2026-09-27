@@ -1,16 +1,24 @@
 # Darkice60
 # main file for fourier-analysis
 
+# import fouier_t for running code
 import python_files.fourier_t as fourier_t            
 
+# ask for chocie and init variable of if done or not
 choice = int(input("What would you like?\n1 - Fourier Transform at a frequency value?\n2 - Frequency finder using the Fourier Transform\n"))
 dest = False
 
+# while the user is not done
 while not dest:
+    # ask user for function
     func_string = input("Enter your function. \"USE CMATH FOR FUNCTIONS\"\n")
+    # convert to function
     func = fourier_t.create_func(func_string)
+    # if the choice is is one
     if choice == 1:
+        # ask user for frequency
         xi = float(input("xi value?\n"))
+        # ask user for domain
         t = float(input("integration domain? \"(make it so that the function decays to zero fast enough so that the domain to infinity is insignificant)\"\n"))
         n = float(input("number of steps?\n"))
         f_hat = fourier_t.fourier_transform(func, xi, t, n)
