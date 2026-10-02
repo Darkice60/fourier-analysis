@@ -42,6 +42,12 @@ while not dest:
     elif choice == 3:
         values = dft.create_val()
         results = dft.dft(values)
+        delta_x = float(input("What is the difference in x?"))
+        frequencies = dft.find_frequencies(len(results), delta_x)
+        print("Results:")
         for i in range(len(results)):
             print(results[i])
+        print("\nFrequencies:")
+        for i in range(len(frequencies)):
+            print(frequencies[i])
     dest = bool(input("End? (blank for no)\n"))

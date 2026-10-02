@@ -25,3 +25,13 @@ def create_val():
         values.append(float(val))
         i += 1
     return values
+
+def find_frequencies(n_tot, delta_x):
+    delta_xi = 1/(n_tot * delta_x)
+    freqs = []
+    for k in range(n_tot):
+        if k <= n_tot // 2:
+            freqs.append(k * delta_xi)
+        else:
+            freqs.append((k - n_tot) * delta_xi)
+    return freqs
