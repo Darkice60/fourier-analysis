@@ -35,3 +35,23 @@ def find_frequencies(n_tot, delta_x):
         else:
             freqs.append((k - n_tot) * delta_xi)
     return freqs
+
+def find_mags(n_tot, results):
+    mag = []
+    for k in range(n_tot):
+        if k == 0 or k == n_tot // 2:
+            mag.append(math.hypot(results[k].imag, results[k].real) / n_tot)
+        elif k > n_tot // 2:
+            break
+        else:
+            mag.append(2 * math.hypot(results[k].imag, results[k].real) / n_tot)
+    return mag
+
+def find_angs(n_tot, results):
+    angs = []
+    for k in range(n_tot):
+        if abs(results[k]) < 1e-12:
+            angs.append(None)
+        else:
+            angs.append(math.atan2(results[k].imag, results[k].real))
+    return angs
