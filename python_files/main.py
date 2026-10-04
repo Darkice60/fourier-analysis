@@ -3,7 +3,8 @@
 
 # import fouier_t for running code
 import fourier_t as ft
-import discrete_ft as dft     
+import discrete_ft as dft
+import sender as se 
 
 # ask for chocie and init variable of if done or not
 choice = int(input("What would you like?\n1 - Fourier Transform at a frequency value?\n2 - Frequency finder using the Fourier Transform\n3 - Discrete Fourier Transform with Manual Input\n"))
@@ -59,4 +60,8 @@ while not dest:
         print("\nPhase Angle:")
         for i in range(len(angs)):
             print(angs[i])
+    elif choice == 4:
+        msg = input("Enter your message:\n")
+        msg.encode("utf-8")
+        data = se.get_bytes(msg)
     dest = bool(input("End? (blank for no)\n"))
