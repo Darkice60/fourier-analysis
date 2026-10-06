@@ -4,7 +4,8 @@
 # import fouier_t for running code
 import fourier_t as ft
 import discrete_ft as dft
-import sender as se 
+import sender as se
+import receiver as re
 
 # ask for chocie and init variable of if done or not
 choice = int(input("What would you like?\n1 - Fourier Transform at a frequency value?\n2 - Frequency finder using the Fourier Transform\n3 - Discrete Fourier Transform with Manual Input\n"))
@@ -70,4 +71,8 @@ while not dest:
             file_name = input("Enter the file to write to (fake medium):\n")
             se.write_file(file_name, signal)
             print(signal)
+        case 5:
+            file_name = input("Enter the file to write to (fake medium):\n")
+            signal = re.read_file(file_name)
+            # bits = re.to_bits(signal, time_bit=0.1, sample_rate=0.1)
     dest = bool(input("End? (blank for no)\n"))

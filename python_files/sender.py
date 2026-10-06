@@ -2,7 +2,6 @@
 # sender file for fourier-analysis
 
 import math as m
-import os
 
 def get_bytes(msg):
     data = " ".join(format(b, "08b") for b in msg)
