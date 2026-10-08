@@ -1,7 +1,7 @@
 # Darkice60
 # main file for fourier-analysis
 
-# import fouier_t for running code
+# import other files for running code
 import fourier_t as ft
 import discrete_ft as dft
 import sender as se
