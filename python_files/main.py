@@ -93,5 +93,5 @@ while not dest:
         case 5:
             file_name = input("Enter the file to write to (fake medium):\n")
             signal = re.read_file(file_name)
-            # bits = re.to_bits(signal, time_bit=0.1, sample_rate=0.1)
+            bits = re.to_bits(signal, time_bit=0.1, sample_rate=0.1)
     dest = bool(input("End? (blank for no)\n"))
