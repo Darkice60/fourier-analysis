@@ -14,7 +14,7 @@ dest = False
 while not dest:
     # ask for chocie and init variable of if done or not
     choice = int(input("What would you like?\n1 - Fourier Transform at a frequency value?\n2 - Frequency finder using the Fourier Transform\n3 - Discrete Fourier Transform with Manual Input\n" \
-    "4 - 'Send' a message using a signal as a wave.\n5 - Decode a 'signal' using the fourier transform.\nm"))
+    "4 - 'Send' a message using a signal as a wave.\n5 - Decode a 'signal' using the fourier transform.\n"))
 
     # if the choice is is 1
     match choice:
@@ -85,13 +85,16 @@ while not dest:
             msg = msg.encode("utf-8")
             data = se.get_bytes(msg)
             bits = se.get_bits(data)
-            signal = se.form_wave(bits)
+            signal = se.form_wave(bits, time_bit=0.1, sample_rate=1000)
             file_name = input("Enter the file to write to (fake medium):\n")
             se.write_file(file_name, signal)
-            print(signal)
+            print("Sent!")
         # if the choice is is 5
         case 5:
-            file_name = input("Enter the file to write to (fake medium):\n")
+            file_name = input("Enter the file to read from (fake medium):\n")
             signal = re.read_file(file_name)
-            bits = re.to_bits(signal, time_bit=0.1, sample_rate=0.1)
+            bits = re.to_bits(signal, time_bit=0.1, sample_rate=1000)
+            bytes_val = re.to_bytes(bits)
+            msg = re.message_decode(bytes_val)
+            print(msg)
     dest = bool(input("End? (blank for no)\n"))

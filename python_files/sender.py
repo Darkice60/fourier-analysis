@@ -14,10 +14,8 @@ def get_bits(data):
         bits.append(list(byte))
     return bits
 
-def form_wave(bits):
+def form_wave(bits, time_bit, sample_rate):
     signal = []
-    time_bit = 0.1
-    sample_rate = 1000
     samples = int(time_bit * sample_rate)
     for bytes in bits:
         for bit in bytes:
