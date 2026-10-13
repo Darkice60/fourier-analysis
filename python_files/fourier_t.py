@@ -38,17 +38,27 @@ def create_func(func_string):
 # finds (coarsely) the frequencies present in a function in a certain frequency range
 # uses CFT for this
 def find_high(func, t, n, xi_min, xi_max):
+    # create lists to do this, results is for the actual fourier transform values at each xi
     results = []
+    # peaks is the list where the peaks of the CFT show up (top frequencies)
     peaks = []
+    # create teh results list with 0.05 step
     for xi in np.arange(xi_min, xi_max, 0.05):
+                # preform fouier transsform
                 f_hat = fourier_transform(func, xi, t, n)
+                # appened to results list
                 results.append((xi, f_hat, abs(f_hat)))
+    # get the actual peaks of the results out
     for i in range(1, len(results) -1):
+        # get the magnitude one frequecncy value before and one after the test target
         _, _, magnitude_before = results[i - 1]
         xi, f_hat, magnitude = results[i]
         _, _, magnitude_after = results[i + 1]
+        # if the test is greater than them both
         if magnitude_before < magnitude and magnitude > magnitude_after:
+            # add the CFT info and frequcency to the peaks lits
             peaks.append((xi, f_hat, magnitude))
+    # return the peaks list
     return peaks
 
 #
