@@ -90,7 +90,7 @@ while not dest:
             # put the data in bits
             bits = se.get_bits(data)
             # make a signal out of the bits
-            signal = se.form_wave(bits, time_bit=0.1, sample_rate=1000)
+            signal = se.form_wave(bits, time_bit=0.1, sample_rate=1280)
             # ask the file to write the "signal" to
             file_name = input("Enter the file to write to (fake medium):\n")
             # write to the file
@@ -104,7 +104,7 @@ while not dest:
             # read the signal
             signal = re.read_file(file_name)
             # make the signal to bits
-            bits = re.to_bits(signal, time_bit=0.1, sample_rate=1000)
+            bits = re.to_bits(signal, time_bit=0.1, sample_rate=1280)
             # make the bits to bytes
             bytes_val = re.to_bytes(bits)
             # decode the msg from bytes to utf-8 to string

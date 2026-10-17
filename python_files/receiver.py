@@ -1,7 +1,7 @@
 # Darkice60
 # reciever file for fourier-analysis
 
-import discrete_ft as dft
+import fast_ft as fft
 
 def read_file(file_name):
     signal = []
@@ -17,8 +17,8 @@ def to_bits(signal, time_bit, sample_rate):
         chunk = signal[i:i + sample_per_bit]
         if len(chunk) < sample_per_bit:
             break
-        chunk_dft = dft.dft(chunk)
-        if abs(chunk_dft[4]) > abs(chunk_dft[8]) :
+        chunk_fft = fft.fft(chunk)
+        if abs(chunk_fft[4]) > abs(chunk_fft[8]) :
             bits.append(0)
         else:
             bits.append(1)

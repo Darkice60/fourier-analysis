@@ -5,13 +5,17 @@ import math
 import cmath
 
 def fft(values):
-    result = []
-    n_tot = len(values)
-    for k in range(n_tot):
-        value1 = 0j
-        value2 = 0j
-        for m in range(math.ceil(n_tot/2 -1)):
-            value1 += values[2 * m] * cmath.exp(-2j * math.pi * k * 2 * m * (1/n_tot))
-            value2 += values[2 * m + 1] * cmath.exp(-2j * math.pi * k * (2 * m + 1) * (1/n_tot))
-        result.append(value1 + value2)
+    n = len(values)
+
+    if n <= 1:
+        return values
+
+    even = fft(values[0::2])
+    odd = fft(values[1::2])
+
+    result = [0j] * n
+    for k in range(n // 2):
+        twiddle = cmath.exp(-2j * math.pi * k / n)
+        result[k] = even[k] + twiddle * odd[k]
+        result[k + n // 2] = even[k] - twiddle * odd[k]
     return result
