@@ -61,24 +61,36 @@ def find_high(func, t, n, xi_min, xi_max):
     # return the peaks list
     return peaks
 
-#
+# refines the actual peaks to find the frequencies
 def refine_peaks(func, t, n, peaks):
+    # list for the refined set of ferequiees
     refined = []
+    # for the number of peaks
     for i in range(len(peaks)):
+        # get the frequency and magnitude of teh CFT 
         xi, _, mag = peaks[i]
+        # choose an arbitary step value size 
         step = 0.01 
+        # while step is greater than 10^-10
         while step > 1e-10:  
+            # get the siz eofd the peak slightly before and slightly after
             mag_before = abs(fourier_transform(func, (xi-step), t, n))
             mag_after = abs(fourier_transform(func, (xi+step), t, n))
 
+            # if the magnitude before is greater than the magintude edit the frequecy value
             if mag_before > mag:
                 xi -= step
                 mag = mag_before
+            # if the magnitude after is greater than the magintude edit the frequecy value
             elif mag_after > mag:
                 xi += step
                 mag = mag_after
+                # otherwise divide by 10
             else:
                 step /= 10
+        # get the new CFT values
         f_hat = fourier_transform(func, xi, t, n)
-        refined.append((xi, f_hat, abs(f_hat)))
+        # add to the list
+        refined.append((xi, f_hat, abs(f_hat)))\
+    # return teh list
     return refined
