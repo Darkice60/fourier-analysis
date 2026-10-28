@@ -24,17 +24,25 @@ def dft(values):
     # return the DFT
     return result
 
-# 
+# create a list of wave values based on discrete points form the user
 def create_val():
+    # create a list of values and init an accumulator
     values = []
     i = 0
+    # while not broken
     while True:
+        # init value
         val = ""
+        # ask the user for discrete value
         val = input(f"Enter x_{i}:\n")
+        # if they type done, break the loop
         if (val.casefold() == "done"):
             break
+        # append vale to the list after converting to float
         values.append(float(val))
+        # add one to accumulator
         i += 1
+    # return values list
     return values
 
 def find_frequencies(n_tot, delta_x):
