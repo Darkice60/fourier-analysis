@@ -45,27 +45,45 @@ def create_val():
     # return values list
     return values
 
+# find the frequency values from the DFT
 def find_frequencies(n_tot, delta_x):
+    # change in frequency
     delta_xi = 1/(n_tot * delta_x)
+    # list of frequencies
     freqs = []
+    # iterate through the list
     for k in range(n_tot):
+        # add the frequencies to the list
         if k <= n_tot // 2:
             freqs.append(k * delta_xi)
         else:
             freqs.append((k - n_tot) * delta_xi)
+    # return the frequencies
     return freqs
 
+# find the magnitudes of the DFT
 def find_mags(n_tot, results):
+    # create list of magnitudes
     mag = []
+    # iterate through the DFT list
     for k in range(n_tot):
+        # appened the magnitude
         mag.append(math.hypot(results[k].imag, results[k].real))
+    # return the list of magnitudes
     return mag
 
+# find the phase angles of the DFT
 def find_angs(n_tot, results):
+    # create a list of phase angles
     angs = []
+    # iterate through the DFT list
     for k in range(n_tot):
+        # if the DFT value is essentially 0
         if abs(results[k]) < 1e-12:
+            # append None
             angs.append(None)
         else:
+            # otherwise, appened the phase angle
             angs.append(math.atan2(results[k].imag, results[k].real))
+    # return the list of phase angles
     return angs
